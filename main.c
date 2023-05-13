@@ -26,10 +26,10 @@ int main(int argc, char *argv[])
     exit(1);
   }
 
-  struct sockaddr_in serveraddress;
-  serveraddress.sin_family = AF_INET;
-  serveraddress.sin_addr.s_addr = inet_addr("127.0.0.1");
-  serveraddress.sin_port = htons(8000);
+  struct sockaddr_in server_address;
+  server_address.sin_family = AF_INET;
+  server_address.sin_addr.s_addr = inet_addr("127.0.0.1");
+  server_address.sin_port = htons(8000);
 
   printf("%d\n", socketfd);
   exit(0);
