@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
   if ((socketfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
   {
     fprintf(stderr, "socket failed\n");
+    perror("Error");
     exit(1);
   }
 
@@ -30,6 +31,13 @@ int main(int argc, char *argv[])
   server_address.sin_family = AF_INET;
   server_address.sin_addr.s_addr = inet_addr("127.0.0.1");
   server_address.sin_port = htons(8000);
+
+  if (connect(socketfd, (struct sockaddr *)&server_address, sizeof(server_address)) < 0)
+  {
+    fprintf(stderr, "connect failed\n");
+    perror("Error");
+    exit(1);
+  }
 
   printf("%d\n", socketfd);
   exit(0);
