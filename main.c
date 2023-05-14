@@ -39,6 +39,14 @@ int main(int argc, char *argv[])
     exit(1);
   }
 
-  printf("%d\n", socketfd);
+  char *msg = "Hello from client";
+  int msg_len = sizeof(msg);
+  if(send(socketfd, msg, msg_len, 0) < 0) {
+    fprintf(stderr, "send failed\n");
+    exit(1);
+  }
+
+  printf("%s\n", "msg send success");
+
   exit(0);
 }
