@@ -46,8 +46,18 @@ int main(int argc, char *argv[])
     fprintf(stderr, "send failed\n");
     exit(1);
   }
-
   printf("%s\n", "msg send success");
+
+  char recvmsg[4096];
+  int recvmsg_len = sizeof(recvmsg) - 1;
+  int recv_len = recv(socketfd, recvmsg, recvmsg_len, 0);
+  if(recv_len < 0) {
+    fprintf(stderr, "recv failed\n");
+    exit(1);
+  }
+
+  recvmsg[recv_len] = '\0';
+  printf("status: %s\n", recvmsg);
 
   exit(0);
 }
