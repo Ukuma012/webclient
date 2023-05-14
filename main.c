@@ -40,9 +40,9 @@ int main(int argc, char *argv[])
     exit(1);
   }
 
-  char *msg = "Hello from client";
-  int msg_len = strlen(msg);
-  if(send(socketfd, msg, msg_len, 0) < 0) {
+  char *request = "GET / HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n";
+  int request_len = strlen(request);
+  if(send(socketfd, request, request_len, 0) < 0) {
     fprintf(stderr, "send failed\n");
     exit(1);
   }
