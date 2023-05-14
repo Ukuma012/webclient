@@ -3,6 +3,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <string.h>
 
 // struct in_addr
 // {
@@ -40,7 +41,7 @@ int main(int argc, char *argv[])
   }
 
   char *msg = "Hello from client";
-  int msg_len = sizeof(msg);
+  int msg_len = strlen(msg);
   if(send(socketfd, msg, msg_len, 0) < 0) {
     fprintf(stderr, "send failed\n");
     exit(1);
