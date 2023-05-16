@@ -40,9 +40,10 @@ int main(int argc, char *argv[])
     exit(1);
   }
 
-  char *request = "GET / HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n";
+  char *request = "GET /index.html HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n";
   int request_len = strlen(request);
-  if(send(socketfd, request, request_len, 0) < 0) {
+  if (send(socketfd, request, request_len, 0) < 0)
+  {
     fprintf(stderr, "send failed\n");
     exit(1);
   }
@@ -51,7 +52,8 @@ int main(int argc, char *argv[])
   char recvmsg[4096];
   int recvmsg_len = sizeof(recvmsg) - 1;
   int recv_len = recv(socketfd, recvmsg, recvmsg_len, 0);
-  if(recv_len < 0) {
+  if (recv_len < 0)
+  {
     fprintf(stderr, "recv failed\n");
     exit(1);
   }
